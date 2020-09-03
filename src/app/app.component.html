@@ -1,31 +1,44 @@
 <form [formGroup]="myForm">
 
-  <input  type="text"
-          placeholder="First Name"
-          formControlName="firstName" />
+     <div formGroupName="basicInfo">
 
-  <input  type="text"
-          placeholder="Last Name"
-          formControlName="lastName" />
+      <input  type="text"
+                placeholder="First Name"
+                formControlName="firstName" />
+
+      <input  type="text"
+                placeholder="Last Name"
+                formControlName="lastName" />
+
+      <input  type="email"
+                placeholder="e-mail"
+                formControlName="email" />
+
+      <input  type="number"
+                placeholder="Age"
+                formControlName="age" />
+
+     </div>
+
+     <div formGroupName="address">
+
+        <input  type="text"
+                placeholder="Street"
+                formControlName="street" />
+
+        <input  type="number"
+                placeholder="Number"
+                formControlName="number" />
+
+        <input  type="number"
+                placeholder="Postal Code"
+                formControlName="postal" />
+
+     </div>
 
 </form>
 
 
-<table>
-  <tr>
-    <td>
-      First name
-    </td>
-    <td>
-      Last name
-    </td>
-  </tr>
-  <tr>
-    <td>
-      {{ myForm.get('firstName').value }}
-    </td>
-    <td>
-      {{ myForm.get('lastName').value }}
-    </td>
-  </tr>
-</table>
+<pre>
+  {{myForm.value | json}}
+</pre>

@@ -11,8 +11,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm = new FormGroup({
-      firstName: new FormControl(),
-      lastName: new FormControl(),
+      basicInfo: new FormGroup({
+        firstName: new FormControl(),
+        lastName: new FormControl(),
+        email: new FormControl(),
+        age: new FormControl(),
+      }),
+      address: new FormGroup({
+        street: new FormControl(),
+        number: new FormControl(),
+        postal: new FormControl(),
+      }),
     })
   }
 }
