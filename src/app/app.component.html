@@ -1,40 +1,8 @@
 <form [formGroup]="myForm">
 
-     <div formGroupName="basicInfo">
-
-      <input  type="text"
-                placeholder="First Name"
-                formControlName="firstName" />
-
-      <input  type="text"
-                placeholder="Last Name"
-                formControlName="lastName" />
-
-      <input  type="email"
-                placeholder="e-mail"
-                formControlName="email" />
-
-      <input  type="number"
-                placeholder="Age"
-                formControlName="age" />
-
-     </div>
-
-     <div formGroupName="address">
-
-        <input  type="text"
-                placeholder="Street"
-                formControlName="street" />
-
-        <input  type="number"
-                placeholder="Number"
-                formControlName="number" />
-
-        <input  type="number"
-                placeholder="Postal Code"
-                formControlName="postal" />
-
-     </div>
+  <div *ngFor="let color of colors.controls;" [formGroup]="color">
+    <input type="text" formControlName="name" />
+  </div>
 
 </form>
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { FormControl, FormGroup } from '@angular/forms'
+import { FormArray, FormControl, FormGroup } from '@angular/forms'
 
 @Component({
   selector: 'app-root',
@@ -9,19 +9,17 @@ import { FormControl, FormGroup } from '@angular/forms'
 export class AppComponent implements OnInit {
   myForm: FormGroup
 
+  get colors() {
+    return this.myForm.get('colors') as FormArray
+  }
+
   ngOnInit(): void {
     this.myForm = new FormGroup({
-      basicInfo: new FormGroup({
-        firstName: new FormControl(),
-        lastName: new FormControl(),
-        email: new FormControl(),
-        age: new FormControl(),
-      }),
-      address: new FormGroup({
-        street: new FormControl(),
-        number: new FormControl(),
-        postal: new FormControl(),
-      }),
+      colors: new FormArray([
+        new FormGroup({ name: new FormControl('Red') }),
+        new FormGroup({ name: new FormControl('Green') }),
+        new FormGroup({ name: new FormControl('Blue') }),
+      ]),
     })
   }
 }
