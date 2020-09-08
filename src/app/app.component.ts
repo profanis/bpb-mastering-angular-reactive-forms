@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { FormControl, FormGroup } from '@angular/forms'
+import { FormArray, FormControl, FormGroup } from '@angular/forms'
 
 @Component({
   selector: 'app-root',
@@ -8,6 +8,10 @@ import { FormControl, FormGroup } from '@angular/forms'
 })
 export class AppComponent implements OnInit {
   myForm: FormGroup
+
+  get colors() {
+    return this.myForm.get('colors') as FormArray
+  }
 
   ngOnInit(): void {
     this.myForm = new FormGroup({
@@ -23,5 +27,28 @@ export class AppComponent implements OnInit {
         postal: new FormControl(),
       }),
     })
+
+    this.myForm.setValue(this.mockData())
+  }
+
+  submitForm() {
+    // consume a service method here which will delegate the request on an API request
+    console.log(this.myForm.value)
+  }
+
+  private mockData() {
+    return {
+      basicInfo: {
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john@doe.com',
+        age: '76',
+      },
+      address: {
+        street: 'street name',
+        number: '12',
+        postal: '49000',
+      },
+    }
   }
 }
