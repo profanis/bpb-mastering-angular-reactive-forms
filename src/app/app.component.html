@@ -1,7 +1,22 @@
+<label>I am a front-end developer</label>
 <div [formGroup]="myForm">
-  <input  type="checkbox"
-          id="termsAndConditions"
-          formControlName="termsAndConditions">
+  <div>
+    <label  for="yesFrontEnd">Yes</label>
+    <input  id="yesFrontEnd"
+            type="radio"
+            formControlName="frontEndDev"
+            name="frontEndDev"
+            value="1">
+  </div>
 
-  <label  for="termsAndConditions">I accept the terms and conditions</label>
+  <div>
+    <label  for="noFrontEnd">No</label>
+    <input  id="noFrontEnd"
+            type="radio"
+            formControlName="frontEndDev"
+            name="frontEndDev"
+            value="2">
+  </div>
 </div>
+
+{{myForm.value | json}}

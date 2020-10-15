@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.myForm = this.fb.group({
-      termsAndConditions: this.fb.control(null),
+      frontEndDev: this.fb.control('2'),
     })
   }
 }
