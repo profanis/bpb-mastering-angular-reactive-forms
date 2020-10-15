@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { FormControl, FormGroup } from '@angular/forms'
+import { FormBuilder, FormGroup } from '@angular/forms'
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,11 @@ import { FormControl, FormGroup } from '@angular/forms'
 export class AppComponent implements OnInit {
   myForm: FormGroup
 
-  ngOnInit(): void {
-    this.myForm = new FormGroup({
-      firstName: new FormControl(),
-      lastName: new FormControl(),
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    this.myForm = this.fb.group({
+      termsAndConditions: this.fb.control(null),
     })
   }
 }

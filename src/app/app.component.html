@@ -1,31 +1,7 @@
-<form [formGroup]="myForm">
+<div [formGroup]="myForm">
+  <input  type="checkbox"
+          id="termsAndConditions"
+          formControlName="termsAndConditions">
 
-  <input  type="text"
-          placeholder="First Name"
-          formControlName="firstName" />
-
-  <input  type="text"
-          placeholder="Last Name"
-          formControlName="lastName" />
-
-</form>
-
-
-<table>
-  <tr>
-    <td>
-      First name
-    </td>
-    <td>
-      Last name
-    </td>
-  </tr>
-  <tr>
-    <td>
-      {{ myForm.get('firstName').value }}
-    </td>
-    <td>
-      {{ myForm.get('lastName').value }}
-    </td>
-  </tr>
-</table>
+  <label  for="termsAndConditions">I accept the terms and conditions</label>
+</div>
