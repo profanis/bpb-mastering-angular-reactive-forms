@@ -1,19 +1,17 @@
-import { Component, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup } from '@angular/forms'
+import { Component } from '@angular/core'
+import { FormControl } from '@angular/forms'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  myForm: FormGroup
+export class AppComponent {
+  colors = [
+    { key: 1, value: 'Red' },
+    { key: 2, value: 'Green' },
+    { key: 3, value: 'Blue' },
+  ]
 
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit() {
-    this.myForm = this.fb.group({
-      frontEndDev: this.fb.control('2'),
-    })
-  }
+  myColor = new FormControl(this.colors[1])
 }

@@ -1,22 +1,7 @@
-<label>I am a front-end developer</label>
-<div [formGroup]="myForm">
-  <div>
-    <label  for="yesFrontEnd">Yes</label>
-    <input  id="yesFrontEnd"
-            type="radio"
-            formControlName="frontEndDev"
-            name="frontEndDev"
-            value="1">
-  </div>
-
-  <div>
-    <label  for="noFrontEnd">No</label>
-    <input  id="noFrontEnd"
-            type="radio"
-            formControlName="frontEndDev"
-            name="frontEndDev"
-            value="2">
-  </div>
-</div>
-
-{{myForm.value | json}}
+<label>Pick your color</label>
+<select [formControl]="myColor">
+  <option [ngValue]="null">Select</option>
+  <option *ngFor="let color of colors" [ngValue]="color">
+    {{color.value}}
+  </option>
+</select>
