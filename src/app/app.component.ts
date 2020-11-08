@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { FormArray, FormControl, FormGroup } from '@angular/forms'
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-root',
@@ -13,13 +13,20 @@ export class AppComponent implements OnInit {
     return this.myForm.get('colors') as FormArray
   }
 
+  constructor(private fb: FormBuilder) {}
+
   ngOnInit(): void {
-    this.myForm = new FormGroup({
-      colors: new FormArray([
-        new FormGroup({ name: new FormControl('Red') }),
-        new FormGroup({ name: new FormControl('Green') }),
-        new FormGroup({ name: new FormControl('Blue') }),
+    this.myForm = this.fb.group({
+      colors: this.fb.array([
+        this.getFormArrayItem('Red'),
+        this.getFormArrayItem(),
       ]),
+    })
+  }
+
+  private getFormArrayItem(value?: string) {
+    return this.fb.group({
+      name: [value, Validators.required],
     })
   }
 }
