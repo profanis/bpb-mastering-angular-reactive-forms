@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormArray, FormBuilder, FormGroup, ValidatorFn } from '@angular/forms'
 
 @Component({
   selector: 'app-root',
@@ -17,16 +17,31 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
-      colors: this.fb.array([
-        this.getFormArrayItem('Red'),
-        this.getFormArrayItem(),
-      ]),
+      colors: this.fb.array(
+        [this.getFormArrayItem('Red'), this.getFormArrayItem()],
+        { validators: [allValuesShouldBeDifferent('name')] }
+      ),
     })
   }
 
   private getFormArrayItem(value?: string) {
     return this.fb.group({
-      name: [value, Validators.required],
+      name: [value],
     })
+  }
+}
+
+export function allValuesShouldBeDifferent(property): ValidatorFn {
+  return (formArray: FormArray) => {
+    const hasDuplicates = formArray.value
+      .map((it) => it[property])
+      .reduce((acc, cur, idx, arr) => {
+        const hasDups = arr.slice(idx + 1).some((it) => it === cur) || acc
+        acc = hasDups || acc
+
+        return acc
+      }, false)
+
+    return hasDuplicates ? { hasDuplicates: true } : null
   }
 }
