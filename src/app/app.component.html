@@ -1,16 +1,20 @@
 <form [formGroup]="myForm">
 
   <input  type="text"
-          placeholder="First Name"
-          formControlName="firstName" />
+          placeholder="Password"
+          formControlName="password" />
 
-  <small *ngIf="myForm.controls.firstName.invalid">Required field</small>
+  <small *ngIf="myForm.controls.password.invalid">Required field</small>
 
   <input  type="text"
-          placeholder="Last Name"
-          formControlName="lastName" />
+          placeholder="Retype password"
+          formControlName="reTypePassword" />
 
-  <small *ngIf="myForm.controls.lastName.invalid">Required field</small>
+  <small *ngIf="myForm.controls.reTypePassword.invalid">Required field</small>
+
+  <p>
+    <small *ngIf="myForm.errors?.fieldsDoNotMatch">The fields should have the same value</small>
+  </p>
 
 </form>
 
@@ -29,13 +33,13 @@
   </tr>
   <tr>
     <td>
-      {{ myForm.get('firstName').valid }}
+      {{ myForm.get('password').valid }}
     </td>
     <td>
-      {{ myForm.get('lastName').valid }}
+      {{ myForm.get('reTypePassword').valid }}
     </td>
     <td>
-      {{ myForm.touched }}
+      {{ myForm.errors | json }}
     </td>
   </tr>
 </table>
