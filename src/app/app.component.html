@@ -1,18 +1,14 @@
-<form [formGroup]="myForm">
+<input  type="text"
+        placeholder="First Name"
+        [formControl]="firstName" />
 
-  <input  type="text"
-          placeholder="First Name"
-          formControlName="firstName" />
+<!-- <small *ngIf="myForm.controls.firstName.invalid">Required field</small> -->
 
-  <small *ngIf="myForm.controls.firstName.invalid">Required field</small>
+<input  type="text"
+        placeholder="Last Name"
+        [formControl]="lastName" />
 
-  <input  type="text"
-          placeholder="Last Name"
-          formControlName="lastName" />
-
-  <small *ngIf="myForm.controls.lastName.invalid">Required field</small>
-
-</form>
+<!-- <small *ngIf="myForm.controls.lastName.invalid">Required field</small> -->
 
 
 <table>
@@ -23,19 +19,13 @@
     <td>
       Last name
     </td>
-    <td>
-      FormGroup
-    </td>
   </tr>
   <tr>
     <td>
-      {{ myForm.get('firstName').valid }}
+      {{ firstName.valid }}
     </td>
     <td>
-      {{ myForm.get('lastName').valid }}
-    </td>
-    <td>
-      {{ myForm.touched }}
+      {{ lastName.valid }}
     </td>
   </tr>
 </table>
