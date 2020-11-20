@@ -4,16 +4,15 @@
           placeholder="Password"
           formControlName="password" />
 
-  <small *ngIf="myForm.controls.password.invalid">Required field</small>
 
   <input  type="text"
           placeholder="Retype password"
           formControlName="reTypePassword" />
 
-  <small *ngIf="myForm.controls.reTypePassword.invalid">Required field</small>
-
   <p>
-    <small *ngIf="myForm.errors?.fieldsDoNotMatch">The fields should have the same value</small>
+    <small *ngIf="myForm.errors?.fieldsDoNotMatch">
+      The fields should have the same value
+    </small>
   </p>
 
 </form>
