@@ -2,30 +2,13 @@
         placeholder="First Name"
         [formControl]="firstName" />
 
-<!-- <small *ngIf="myForm.controls.firstName.invalid">Required field</small> -->
-
 <input  type="text"
         placeholder="Last Name"
         [formControl]="lastName" />
 
-<!-- <small *ngIf="myForm.controls.lastName.invalid">Required field</small> -->
-
-
-<table>
-  <tr>
-    <td>
-      First name
-    </td>
-    <td>
-      Last name
-    </td>
-  </tr>
-  <tr>
-    <td>
-      {{ firstName.valid }}
-    </td>
-    <td>
-      {{ lastName.valid }}
-    </td>
-  </tr>
-</table>
+<small *ngIf="lastName?.errors?.exactCharacters">
+  The current length is
+  '{{lastName.errors.exactCharacters.actualLength}}''
+  but required το be
+  '{{lastName.errors.exactCharacters.requiredLength}}'
+</small>
