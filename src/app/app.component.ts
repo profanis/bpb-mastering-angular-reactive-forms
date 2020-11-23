@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
         reTypePassword: ['', Validators.required],
       },
       {
-        validators: [fieldsMatch('password', 'reTypePassword')],
+        validators: fieldsMatch('password', 'reTypePassword'),
       }
     )
   }
