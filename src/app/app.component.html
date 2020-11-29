@@ -1,14 +1,7 @@
 <input  type="text"
-        placeholder="First Name"
-        [formControl]="firstName" />
+        placeholder="Username"
+        [formControl]="username" />
 
-<input  type="text"
-        placeholder="Last Name"
-        [formControl]="lastName" />
-
-<small *ngIf="lastName?.errors?.exactCharacters">
-  The current length is
-  '{{lastName.errors.exactCharacters.actualLength}}''
-  but required το be
-  '{{lastName.errors.exactCharacters.requiredLength}}'
+<small *ngIf="username?.errors?.userExists">
+  The username already exists
 </small>
