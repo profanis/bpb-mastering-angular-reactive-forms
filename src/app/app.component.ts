@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core'
-import { FormArray, FormBuilder, FormGroup, ValidatorFn } from '@angular/forms'
+import {
+  AsyncValidatorFn,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+} from '@angular/forms'
+import { of } from 'rxjs'
 
 @Component({
   selector: 'app-root',
@@ -19,7 +25,10 @@ export class AppComponent implements OnInit {
     this.myForm = this.fb.group({
       colors: this.fb.array(
         [this.getFormArrayItem('Red'), this.getFormArrayItem()],
-        { validators: [allValuesShouldBeDifferent('name')] }
+        {
+          validators: [allValuesShouldBeDifferent('name')],
+          asyncValidators: allValuesShouldBeDifferent('name'),
+        }
       ),
     })
   }
@@ -31,7 +40,7 @@ export class AppComponent implements OnInit {
   }
 }
 
-export function allValuesShouldBeDifferent(property): ValidatorFn {
+export function allValuesShouldBeDifferent(property): AsyncValidatorFn {
   return (formArray: FormArray) => {
     const hasDuplicates = formArray.value
       .map((it) => it[property])
@@ -42,6 +51,6 @@ export function allValuesShouldBeDifferent(property): ValidatorFn {
         return acc
       }, false)
 
-    return hasDuplicates ? { hasDuplicates: true } : null
+    return of(hasDuplicates ? { hasDuplicates: true } : null)
   }
 }
