@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import {
+  AbstractControl,
   FormBuilder,
-  FormControl,
   ValidationErrors,
   ValidatorFn,
   Validators,
@@ -20,7 +20,7 @@ export class AppComponent {
 }
 
 export function exactCharacters(length: number): ValidatorFn {
-  return (control: FormControl): ValidationErrors | null => {
+  return (control: AbstractControl): ValidationErrors | null => {
     const controlLength = control.value?.toString()?.length
 
     return controlLength === length
