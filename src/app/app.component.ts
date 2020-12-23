@@ -1,50 +1,30 @@
-import { Component, OnInit } from '@angular/core'
-import {
-  FormBuilder,
-  FormGroup,
-  ValidationErrors,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms'
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup } from '@angular/forms'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   myForm: FormGroup
+  private myFormSubscription: Subscription
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {
-    this.myForm = this.fb.group(
-      {
-        password: ['', Validators.required],
-        reTypePassword: ['', Validators.required],
-      },
-      {
-        validators: fieldsMatch('password', 'reTypePassword'),
-      }
+  ngOnInit() {
+    this.myForm = this.fb.group({
+      password: [],
+      reTypePassword: [],
+    })
+
+    this.myFormSubscription = this.myForm.valueChanges.subscribe((formModel) =>
+      console.log(formModel)
     )
   }
-}
 
-export function fieldsMatch(control1Name, control2Name): ValidatorFn {
-  return (group: FormGroup): ValidationErrors => {
-    const control1Value = group.controls[control1Name].value
-    const control2Value = group.controls[control2Name].value
-
-    if (!control1Value && !control2Value) {
-      return null
-    }
-
-    return control1Value === control2Value
-      ? null
-      : {
-          fieldsDoNotMatch: true,
-          control1Name: control1Value,
-          control2Name: control2Value,
-        }
+  ngOnDestroy() {
+    this.myFormSubscription?.unsubscribe()
   }
 }
