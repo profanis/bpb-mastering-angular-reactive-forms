@@ -1,35 +1,28 @@
-import { Component } from '@angular/core'
-import {
-  AbstractControl,
-  FormBuilder,
-  ValidationErrors,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms'
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { FormBuilder } from '@angular/forms'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  template: ` <input
+    type="text"
+    placeholder="First Name"
+    [formControl]="firstName"
+  />`,
 })
-export class AppComponent {
-  firstName = this.fb.control('', Validators.minLength(3))
-  lastName = this.fb.control('', exactCharacters(20))
+export class AppComponent implements OnInit, OnDestroy {
+  firstName = this.fb.control('')
+  private firstNameSubscription: Subscription
 
   constructor(private fb: FormBuilder) {}
-}
 
-export function exactCharacters(length: number): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const controlLength = control.value?.toString()?.length
+  ngOnInit() {
+    this.firstNameSubscription = this.firstName.valueChanges
+      .pipe()
+      .subscribe((value) => console.log(value))
+  }
 
-    return controlLength === length
-      ? null
-      : {
-          exactCharacters: {
-            requiredLength: length,
-            actualLength: controlLength,
-          },
-        }
+  ngOnDestroy() {
+    this.firstNameSubscription?.unsubscribe()
   }
 }
