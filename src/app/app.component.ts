@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core'
-import { FormArray, FormBuilder, FormGroup, ValidatorFn } from '@angular/forms'
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   myForm: FormGroup
+  private myFormSubscription: Subscription
 
   get colors() {
     return this.myForm.get('colors') as FormArray
@@ -15,33 +16,20 @@ export class AppComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.myForm = this.fb.group({
-      colors: this.fb.array(
-        [this.getFormArrayItem('Red'), this.getFormArrayItem()],
-        { validators: [allValuesShouldBeDifferent('name')] }
-      ),
+      colors: this.fb.array([
+        this.fb.group({ name: [] }),
+        this.fb.group({ name: [] }),
+      ]),
     })
+
+    this.myFormSubscription = this.colors.valueChanges.subscribe((formArray) =>
+      console.log(formArray)
+    )
   }
 
-  private getFormArrayItem(value?: string) {
-    return this.fb.group({
-      name: [value],
-    })
-  }
-}
-
-export function allValuesShouldBeDifferent(property): ValidatorFn {
-  return (formArray: FormArray) => {
-    const hasDuplicates = formArray.value
-      .map((it) => it[property])
-      .reduce((acc, cur, idx, arr) => {
-        const hasDups = arr.slice(idx + 1).some((it) => it === cur) || acc
-        acc = hasDups || acc
-
-        return acc
-      }, false)
-
-    return hasDuplicates ? { hasDuplicates: true } : null
+  ngOnDestroy() {
+    this.myFormSubscription?.unsubscribe()
   }
 }
