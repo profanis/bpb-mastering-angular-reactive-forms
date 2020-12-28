@@ -17,9 +17,9 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.firstNameSubscription = this.firstName.valueChanges
-      .pipe()
-      .subscribe((value) => console.log(value))
+    this.firstNameSubscription = this.firstName.valueChanges.subscribe(
+      (value) => console.log(value)
+    )
   }
 
   ngOnDestroy() {
