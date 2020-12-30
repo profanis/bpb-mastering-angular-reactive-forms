@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Subscription } from 'rxjs'
 
 @Component({
@@ -15,16 +15,27 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.myForm = this.fb.group({
-      password: [],
-      reTypePassword: [],
+      country: [null, Validators.required],
+      postal: [],
     })
 
-    this.myFormSubscription = this.myForm.valueChanges.subscribe((formModel) =>
-      console.log(formModel)
-    )
+    this.observeAndAdjustValidators()
   }
 
   ngOnDestroy() {
     this.myFormSubscription?.unsubscribe()
+  }
+
+  private observeAndAdjustValidators() {
+    this.myFormSubscription = this.myForm
+      .get('country')
+      .valueChanges.subscribe((country) => {
+        if (country === 'Country 1') {
+          this.myForm.get('postal').setValidators(Validators.required)
+        } else {
+          this.myForm.get('postal').clearValidators()
+        }
+        this.myForm.get('postal').updateValueAndValidity()
+      })
   }
 }

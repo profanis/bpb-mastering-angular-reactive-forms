@@ -1,44 +1,16 @@
 <form [formGroup]="myForm">
 
-  <input  type="text"
-          placeholder="Password"
-          formControlName="password" />
+  <select formControlName="country">
+    <option [ngValue]="null">Select</option>
+    <option>Country 1</option>
+    <option>Country 2</option>
+  </select>
 
 
   <input  type="text"
-          placeholder="Retype password"
-          formControlName="reTypePassword" />
+          placeholder="postal"
+          formControlName="postal" />
 
-  <p>
-    <small *ngIf="myForm.errors?.fieldsDoNotMatch">
-      The fields should have the same value
-    </small>
-  </p>
-
+  {{myForm.valid}}
 </form>
 
-
-<table>
-  <tr>
-    <td>
-      First name
-    </td>
-    <td>
-      Last name
-    </td>
-    <td>
-      FormGroup
-    </td>
-  </tr>
-  <tr>
-    <td>
-      {{ myForm.get('password').valid }}
-    </td>
-    <td>
-      {{ myForm.get('reTypePassword').valid }}
-    </td>
-    <td>
-      {{ myForm.errors | json }}
-    </td>
-  </tr>
-</table>
