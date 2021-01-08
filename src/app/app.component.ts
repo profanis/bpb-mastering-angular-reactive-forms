@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { AppService } from './app.service'
 
 @Component({
   selector: 'app-root',
@@ -9,12 +10,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 export class AppComponent implements OnInit {
   myForm: FormGroup
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private appService: AppService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.myForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
     })
+  }
+
+  submit() {
+    if (this.myForm.invalid) {
+      return
+    }
+
+    this.appService.save(this.myForm.value)
   }
 }
