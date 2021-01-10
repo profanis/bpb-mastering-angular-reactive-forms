@@ -1,0 +1,11 @@
+<ng-container [formGroup]="recommendUsForm">
+  <ng-container formGroupName="recommendUs">
+    <div *ngFor="let value of range">
+      <input type="radio" value="{{value}}" formControlName="range"> {{value}}
+    </div>
+    <input type="text" formControlName="reason" placeholder="Please write the reason of your selection">
+  </ng-container>
+  <a  role="button">Submit</a>
+</ng-container>
+
+{{recommendUsForm.get('recommendUs').valid}}

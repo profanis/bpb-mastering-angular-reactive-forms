@@ -1,0 +1,6 @@
+<ng-container [formGroup]="hearAboutUsForm">
+  <ng-container formGroupName="hearAboutUs">
+    <textarea formControlName="info" placeholder="How did you hear about us?" ></textarea>
+  </ng-container>
+  <a [routerLink]="['/survey/recommend-us']" role="button">Next</a>
+</ng-container>

@@ -1,0 +1,13 @@
+<ng-container [formGroup]="personalInfoForm">
+  <ng-container formGroupName="personalInfo">
+    <input type="text" formControlName="firstName" placeholder="First Name">
+    <input type="text" formControlName="lastName" placeholder="Last Name">
+    <select formControlName="gender">
+      <option [ngValue]="null">Gender</option>
+      <option [ngValue]="1">Male</option>
+      <option [ngValue]="2">Female</option>
+      <option [ngValue]="3">Other</option>
+  </select>
+  </ng-container>
+  <a [routerLink]="['/survey/hear-about-us']" role="button">Next</a>
+</ng-container>
