@@ -4,7 +4,9 @@
   <a [routerLink]="['personal-info']">Start</a>
 </p>
 <ng-container [formGroup]="surveyForm">
-  <router-outlet></router-outlet>
+  <app-personal-info *ngIf="activeStep===1" (next)="activeStep=2" formControlName="personalInfo"></app-personal-info>
+  <app-hear-about-us *ngIf="activeStep===2" (next)="activeStep=3" formControlName="hearAboutUs"></app-hear-about-us>
+  <app-recommend-us *ngIf="activeStep===3" (next)="activeStep=4" formControlName="recommendUs"></app-recommend-us>
 </ng-container>
 
 <pre>

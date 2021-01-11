@@ -1,5 +1,4 @@
 <ng-container [formGroup]="personalInfoForm">
-  <ng-container formGroupName="personalInfo">
     <input type="text" formControlName="firstName" placeholder="First Name">
     <input type="text" formControlName="lastName" placeholder="Last Name">
     <select formControlName="gender">
@@ -8,7 +7,6 @@
       <option [ngValue]="2">Female</option>
       <option [ngValue]="3">Other</option>
   </select>
-  </ng-container>
-  <button type="button" (click)="navigateTo('/survey/hear-about-us')" [disabled]="personalInfoForm.get('personalInfo').invalid">Next</button>
+  <button type="button" (click)="next.emit()" [disabled]="personalInfoForm.invalid">Next</button>
 
 </ng-container>
