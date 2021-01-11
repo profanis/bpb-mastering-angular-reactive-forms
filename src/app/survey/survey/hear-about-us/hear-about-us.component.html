@@ -2,5 +2,6 @@
   <ng-container formGroupName="hearAboutUs">
     <textarea formControlName="info" placeholder="How did you hear about us?" ></textarea>
   </ng-container>
-  <a [routerLink]="['/survey/recommend-us']" role="button">Next</a>
+
+  <button type="button" (click)="navigateTo('/survey/recommend-us')" [disabled]="hearAboutUsForm.get('hearAboutUs').invalid">Next</button>
 </ng-container>

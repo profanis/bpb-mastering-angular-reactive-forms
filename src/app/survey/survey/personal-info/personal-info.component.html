@@ -9,5 +9,6 @@
       <option [ngValue]="3">Other</option>
   </select>
   </ng-container>
-  <a [routerLink]="['/survey/hear-about-us']" role="button">Next</a>
+  <button type="button" (click)="navigateTo('/survey/hear-about-us')" [disabled]="personalInfoForm.get('personalInfo').invalid">Next</button>
+
 </ng-container>

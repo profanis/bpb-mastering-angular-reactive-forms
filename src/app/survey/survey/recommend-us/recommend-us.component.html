@@ -5,7 +5,5 @@
     </div>
     <input type="text" formControlName="reason" placeholder="Please write the reason of your selection">
   </ng-container>
-  <a  role="button">Submit</a>
+  <button type="button" [disabled]="recommendUsForm.get('recommendUs').invalid">Submit</button>
 </ng-container>
-
-{{recommendUsForm.get('recommendUs').valid}}

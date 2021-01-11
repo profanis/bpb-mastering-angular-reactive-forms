@@ -1,8 +1,12 @@
 <p>Welcome to the survey</p>
 <p>Click start to continue</p>
-<a [routerLink]="['personal-info']">Start</a>
+<p>
+  <a [routerLink]="['personal-info']">Start</a>
+</p>
 <ng-container [formGroup]="surveyForm">
   <router-outlet></router-outlet>
 </ng-container>
 
-{{surveyForm.value | json}}
+<pre>
+  {{surveyForm.value | json}}
+</pre>
