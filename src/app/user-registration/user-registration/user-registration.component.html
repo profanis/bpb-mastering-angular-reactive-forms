@@ -1,4 +1,6 @@
-<ng-container formArrayName="userForm">
+<ng-container [formGroup]="userForm">
   <app-basic-info></app-basic-info>
   <app-address></app-address>
 </ng-container>
+
+{{ userForm.valid }}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-user-registration',
@@ -24,6 +24,15 @@ export class UserRegistrationComponent implements OnInit {
         number: [],
         postal: [],
       }),
+    })
+
+    this.userForm.get('basicInfo.age').valueChanges.subscribe((value) => {
+      if (Number(value) === 18) {
+        this.userForm.get('address.postal').setValidators(Validators.required)
+      } else {
+        this.userForm.get('address.postal').clearValidators()
+      }
+      this.userForm.get('address.postal').updateValueAndValidity()
     })
   }
 }
