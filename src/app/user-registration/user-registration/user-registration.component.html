@@ -1,0 +1,6 @@
+<ng-container [formGroup]="userForm">
+  <app-basic-info formControlName="basicInfo"></app-basic-info>
+  <app-address formControlName="address"></app-address>
+</ng-container>
+
+{{userForm.value | json}}
