@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { RouterModule } from '@angular/router'
 import { AppComponent } from './app.component'
 import { SurveyModule } from './survey/survey.module'
+import { UserRegistrationModule } from './user-registration/user-registration.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,6 +14,7 @@ import { SurveyModule } from './survey/survey.module'
     ReactiveFormsModule,
     HttpClientModule,
     SurveyModule,
+    UserRegistrationModule,
     RouterModule.forRoot([
       {
         path: '',
