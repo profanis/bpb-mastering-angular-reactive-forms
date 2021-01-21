@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser'
 import { AppComponent } from './app.component'
-import { UserRegistrationModule } from './user-registration/user-registration.module'
+import { UserRegistrationModule } from './user-registration/user-registration.module';
+import { CheckboxComponent } from './checkbox/checkbox.component'
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CheckboxComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,

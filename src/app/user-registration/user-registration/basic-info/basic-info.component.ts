@@ -1,21 +1,16 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  forwardRef,
-  OnInit,
-} from '@angular/core'
+import { Component, forwardRef, OnDestroy, OnInit } from '@angular/core'
 import {
   ControlValueAccessor,
   FormBuilder,
   FormGroup,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-basic-info',
   templateUrl: './basic-info.component.html',
   styleUrls: ['./basic-info.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -24,10 +19,11 @@ import {
     },
   ],
 })
-export class BasicInfoComponent implements OnInit, ControlValueAccessor {
+export class BasicInfoComponent
+  implements OnInit, OnDestroy, ControlValueAccessor {
   form: FormGroup
-  onChange: (value: boolean) => void
   onTouch: () => void
+  private valueSubscription: Subscription
 
   constructor(private fb: FormBuilder) {}
 
@@ -38,7 +34,7 @@ export class BasicInfoComponent implements OnInit, ControlValueAccessor {
   }
 
   registerOnChange(fn: any): void {
-    this.form.valueChanges.subscribe(fn)
+    this.valueSubscription = this.form.valueChanges.subscribe(fn)
   }
 
   registerOnTouched(fn: any): void {
@@ -60,5 +56,9 @@ export class BasicInfoComponent implements OnInit, ControlValueAccessor {
       email: [],
       age: [],
     })
+  }
+
+  ngOnDestroy(): void {
+    this.valueSubscription?.unsubscribe()
   }
 }

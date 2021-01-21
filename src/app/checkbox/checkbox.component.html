@@ -1,0 +1,6 @@
+<label>{{label}}</label>
+<input  type="checkbox"
+        [checked]="isChecked"
+        [disabled]="isDisabled"
+        (change)="changeHandler($event)"
+        (blur)="onBlur($event)">
