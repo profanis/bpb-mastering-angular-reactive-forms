@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms'
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Subscription } from 'rxjs'
 
 @Component({
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs'
 })
 export class AppComponent implements OnInit, OnDestroy {
   myForm: FormGroup
-  private myFormSubscription: Subscription
+  private valueChangesSubscription: Subscription
 
   get colors() {
     return this.myForm.get('colors') as FormArray
@@ -19,17 +19,17 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.myForm = this.fb.group({
       colors: this.fb.array([
-        this.fb.group({ name: [] }),
-        this.fb.group({ name: [] }),
+        this.fb.group({ name: [null, Validators.required] }),
+        this.fb.group({ name: [null, Validators.required] }),
       ]),
     })
 
-    this.myFormSubscription = this.colors.valueChanges.subscribe((formArray) =>
-      console.log(formArray)
+    this.valueChangesSubscription = this.myForm.statusChanges.subscribe(
+      (status) => console.log(status)
     )
   }
 
   ngOnDestroy() {
-    this.myFormSubscription?.unsubscribe()
+    this.valueChangesSubscription?.unsubscribe()
   }
 }
