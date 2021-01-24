@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  forwardRef,
-  OnInit,
-} from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import {
   ControlValueAccessor,
   FormBuilder,
@@ -15,11 +10,10 @@ import {
   selector: 'app-address',
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => AddressComponent),
+      useExisting: AddressComponent,
       multi: true,
     },
   ],
@@ -56,7 +50,6 @@ export class AddressComponent implements OnInit, ControlValueAccessor {
   ngOnInit(): void {
     this.form = this.fb.group({
       street: [],
-      // eslint-disable-next-line id-blacklist
       number: [],
       postal: [],
     })

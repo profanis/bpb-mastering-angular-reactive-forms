@@ -1,4 +1,4 @@
-import { Component, forwardRef, OnDestroy, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import {
   ControlValueAccessor,
   FormBuilder,
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs'
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => BasicInfoComponent),
+      useExisting: BasicInfoComponent,
       multi: true,
     },
   ],

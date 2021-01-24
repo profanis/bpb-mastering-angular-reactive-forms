@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
 
 @Component({
@@ -8,7 +8,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CheckboxComponent),
+      useExisting: CheckboxComponent,
       multi: true,
     },
   ],
