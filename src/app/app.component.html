@@ -1,14 +1,10 @@
-<form [formGroup]="myForm">
+<input  type="text"
+        placeholder="First Name"
+        [formControl]="firstNameControl" />
 
-  <input  type="text"
-          placeholder="First Name"
-          formControlName="firstName" />
-
-  <input  type="text"
-          placeholder="Last Name"
-          formControlName="lastName" />
-
-</form>
+<input  type="text"
+        placeholder="Last Name"
+        [formControl]="lastNameControl" />
 
 
 <table>
@@ -22,10 +18,10 @@
   </tr>
   <tr>
     <td>
-      {{ myForm.get('firstName').value }}
+      {{ firstNameControl.value }}
     </td>
     <td>
-      {{ myForm.get('lastName').value }}
+      {{ lastNameControl.value }}
     </td>
   </tr>
 </table>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { FormControl, FormGroup } from '@angular/forms'
+import { FormControl } from '@angular/forms'
 
 @Component({
   selector: 'app-root',
@@ -7,12 +7,11 @@ import { FormControl, FormGroup } from '@angular/forms'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  myForm: FormGroup
+  firstNameControl: FormControl
+  lastNameControl: FormControl
 
   ngOnInit(): void {
-    this.myForm = new FormGroup({
-      firstName: new FormControl(),
-      lastName: new FormControl(),
-    })
+    this.firstNameControl = new FormControl()
+    this.lastNameControl = new FormControl()
   }
 }
