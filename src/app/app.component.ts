@@ -22,4 +22,16 @@ export class AppComponent implements OnInit {
       ]),
     })
   }
+
+  addColor(value?: string) {
+    this.colors.push(
+      new FormGroup({
+        name: new FormControl(value),
+      })
+    )
+  }
+
+  removeColor(index: number) {
+    this.colors.removeAt(index)
+  }
 }
