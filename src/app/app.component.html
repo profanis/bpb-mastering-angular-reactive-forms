@@ -8,13 +8,8 @@
     </div>
   </ng-container>
 
-  <small *ngIf="myForm.invalid">
-    The form is invalid
+  <small *ngIf="colors?.errors?.hasDuplicates">
+    The array should not have duplicate values
   </small>
 
 </form>
-
-
-<pre>
-  {{myForm.value | json}}
-</pre>
