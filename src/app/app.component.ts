@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
         [this.getFormArrayItem('Red'), this.getFormArrayItem()],
         {
           validators: [allValuesShouldBeDifferent('name')],
-          asyncValidators: allValuesShouldBeDifferent('name'),
         }
       ),
     })

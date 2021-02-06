@@ -1,14 +1,16 @@
 <form [formGroup]="myForm">
 
-  <div  *ngFor="let color of colors.controls;"
-        [formGroup]="color">
-    <input type="text" formControlName="name" />
-  </div>
+  <ng-container formArrayName="colors">
+    <div  *ngFor="let _ of colors.controls; let idx = index">
+      <ng-container [formGroupName]="idx">
+        <input type="text" formControlName="name" />
+      </ng-container>
+    </div>
 
-  <small *ngIf="myForm.invalid">
-    The form is invalid
-  </small>
-
+    <small *ngIf="myForm.invalid">
+      The form is invalid
+    </small>
+  </ng-container>
 </form>
 
 
