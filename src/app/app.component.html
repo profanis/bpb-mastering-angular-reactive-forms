@@ -1,7 +1,9 @@
 <label>Pick your color</label>
-<select [formControl]="myColor">
+<select [formControl]="myColor" [compareWith]="compareFn">
   <option [ngValue]="null">Select</option>
   <option *ngFor="let color of colors" [ngValue]="color">
     {{color.value}}
   </option>
 </select>
+
+{{myColor.value | json}}

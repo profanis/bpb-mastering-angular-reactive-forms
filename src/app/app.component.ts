@@ -14,4 +14,8 @@ export class AppComponent {
   ]
 
   myColor = new FormControl(this.colors[1])
+
+  compareFn(optionOne, optionTwo) {
+    return optionOne && optionTwo && optionOne.key === optionTwo.key
+  }
 }
