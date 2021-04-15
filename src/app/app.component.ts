@@ -8,8 +8,8 @@ import { Subscription } from 'rxjs'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  myForm: FormGroup
-  private myFormSubscription: Subscription
+  myForm!: FormGroup
+  private myFormSubscription!: Subscription
 
   constructor(private fb: FormBuilder) {}
 
