@@ -1,7 +1,7 @@
-import { FormControl, ValidationErrors, ValidatorFn } from '@angular/forms'
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms'
 
 export function exactCharacters(length: number): ValidatorFn {
-  return (control: FormControl): ValidationErrors | null => {
+  return (control: AbstractControl): ValidationErrors | null => {
     const controlLength = control.value?.toString()?.length
 
     return controlLength === length
