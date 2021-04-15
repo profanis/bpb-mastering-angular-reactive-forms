@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  myForm: FormGroup
+  myForm!: FormGroup
 
   constructor(private fb: FormBuilder) {}
 
