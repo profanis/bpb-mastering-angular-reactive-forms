@@ -8,8 +8,8 @@ import { Subscription } from 'rxjs'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  myForm: FormGroup
-  private myFormSubscription: Subscription
+  myForm!: FormGroup
+  private myFormSubscription!: Subscription | undefined
 
   constructor(private fb: FormBuilder) {}
 
@@ -29,13 +29,13 @@ export class AppComponent implements OnInit, OnDestroy {
   private observeAndAdjustValidators() {
     this.myFormSubscription = this.myForm
       .get('country')
-      .valueChanges.subscribe((country) => {
+      ?.valueChanges.subscribe((country) => {
         if (country === 'Country 1') {
-          this.myForm.get('postal').setValidators(Validators.required)
+          this.myForm.get('postal')?.setValidators(Validators.required)
         } else {
-          this.myForm.get('postal').clearValidators()
+          this.myForm.get('postal')?.clearValidators()
         }
-        this.myForm.get('postal').updateValueAndValidity()
+        this.myForm.get('postal')?.updateValueAndValidity()
       })
   }
 }
