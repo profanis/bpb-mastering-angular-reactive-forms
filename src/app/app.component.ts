@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs'
 })
 export class AppComponent implements OnInit, OnDestroy {
   firstName = this.fb.control('')
-  private firstNameSubscription: Subscription
+  private firstNameSubscription!: Subscription
 
   constructor(private fb: FormBuilder) {}
 
