@@ -6,9 +6,9 @@
         placeholder="Last Name"
         [formControl]="lastName" />
 
-<small *ngIf="lastName?.errors?.exactCharacters">
+<small *ngIf="lastName.errors?.exactCharacters">
   The current length is
-  '{{lastName.errors.exactCharacters.actualLength}}''
+  '{{lastName.errors?.exactCharacters.actualLength}}''
   but required το be
-  '{{lastName.errors.exactCharacters.requiredLength}}'
+  '{{lastName.errors?.exactCharacters.requiredLength}}'
 </small>
