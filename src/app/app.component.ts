@@ -7,8 +7,8 @@ import { FormControl } from '@angular/forms'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  firstNameControl: FormControl
-  lastNameControl: FormControl
+  firstNameControl!: FormControl
+  lastNameControl!: FormControl
 
   ngOnInit(): void {
     this.firstNameControl = new FormControl()
