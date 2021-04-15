@@ -24,8 +24,8 @@ describe('AppComponent', () => {
   it('should have a VALID form', () => {
     // Arrange
     const fixture = TestBed.createComponent(AppComponent)
+    fixture.detectChanges()
     const app = fixture.componentInstance
-    app.ngOnInit()
 
     // Act
     app.myForm.patchValue({
@@ -40,8 +40,8 @@ describe('AppComponent', () => {
   it('should have an INVALID form', () => {
     // Arrange
     const fixture = TestBed.createComponent(AppComponent)
+    fixture.detectChanges()
     const app = fixture.componentInstance
-    app.ngOnInit()
 
     // Act
     app.myForm.patchValue({
@@ -55,8 +55,8 @@ describe('AppComponent', () => {
   it('should have an INVALID form', () => {
     // Arrange
     const fixture = TestBed.createComponent(AppComponent)
+    fixture.detectChanges()
     const app = fixture.componentInstance
-    app.ngOnInit()
     spyOn(appService, 'save').and.stub()
 
     // Act

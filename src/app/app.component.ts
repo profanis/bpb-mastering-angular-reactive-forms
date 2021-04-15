@@ -8,7 +8,7 @@ import { AppService } from './app.service'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  myForm: FormGroup
+  myForm!: FormGroup
 
   constructor(private fb: FormBuilder, private appService: AppService) {}
 
