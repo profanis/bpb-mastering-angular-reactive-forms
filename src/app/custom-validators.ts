@@ -5,7 +5,7 @@ export function noDuplicates(property: string): ValidatorFn {
     const formArray = control as FormArray
     const hasDuplicates = formArray.value
       .map((it: any) => it[property])
-      .reduce((acc: any, cur: any, idx: any, arr: any) => {
+      .reduce((acc: boolean, cur: any, idx: number, arr: any[]) => {
         const hasDups = arr.slice(idx + 1).some((it: any) => it === cur) || acc
         acc = hasDups || acc
 
