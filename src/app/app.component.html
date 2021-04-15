@@ -9,7 +9,7 @@
         [formControl]="lastName" />
 
 <small *ngIf="lastName.errors?.minlength">
-    The min length of this field is {{lastName.errors.minlength.requiredLength}}
+    The min length of this field is {{lastName.errors?.minlength.requiredLength}}
 </small>
 <small *ngIf="lastName.errors?.required">
     Field is required
