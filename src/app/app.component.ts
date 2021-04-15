@@ -7,7 +7,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  myForm: FormGroup
+  myForm!: FormGroup
 
   get colors() {
     return this.myForm.get('colors') as FormArray

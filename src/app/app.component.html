@@ -4,7 +4,7 @@
         formArrayName="colors">
     <ng-container [formGroupName]="idx">
       <input type="text" formControlName="name" />
-      <small *ngIf="color.get('name').invalid">
+      <small *ngIf="color.get('name')?.invalid">
         The form is invalid
       </small>
     </ng-container>
