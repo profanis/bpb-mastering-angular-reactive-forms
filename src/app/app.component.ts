@@ -3,12 +3,11 @@ import {
   AbstractControl,
   AsyncValidatorFn,
   FormBuilder,
-  FormControl,
   ValidationErrors,
-  ValidatorFn,
 } from '@angular/forms'
 import { Observable, of } from 'rxjs'
 import { delay, map } from 'rxjs/operators'
+import { exactCharacters } from './custom-validators'
 
 @Component({
   selector: 'app-root',
@@ -16,9 +15,13 @@ import { delay, map } from 'rxjs/operators'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  username = this.fb.control('', [exactCharacters(5)], [this.userValidator()])
+  readonly existedUsernames = ['john', 'jane']
+  // username = this.fb.control('', [exactCharacters(4)], [this.userValidator()])
 
-  private readonly existedUsernames = ['john', 'jane']
+  username = this.fb.control('', {
+    validators: [exactCharacters(4)],
+    asyncValidators: [this.userValidator()],
+  })
 
   constructor(private fb: FormBuilder) {}
 
@@ -31,20 +34,5 @@ export class AppComponent {
       this.userExists(control.value).pipe(
         map((response) => (response ? { userExists: true } : null))
       )
-  }
-}
-
-export function exactCharacters(length: number): ValidatorFn {
-  return (control: FormControl): ValidationErrors | null => {
-    const controlLength = control.value?.toString()?.length
-
-    return controlLength === length
-      ? null
-      : {
-          exactCharacters: {
-            requiredLength: length,
-            actualLength: controlLength,
-          },
-        }
   }
 }

@@ -2,6 +2,6 @@
         placeholder="Username"
         [formControl]="username" />
 
-<small *ngIf="username?.errors?.userExists">
+<small *ngIf="username.errors?.userExists">
   The username already exists
 </small>
