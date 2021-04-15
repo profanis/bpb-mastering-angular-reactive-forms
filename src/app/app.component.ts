@@ -7,8 +7,8 @@ import { Subscription } from 'rxjs'
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit, OnDestroy {
-  myForm: FormGroup
-  private valueChangesSubscription: Subscription
+  myForm!: FormGroup
+  private valueChangesSubscription!: Subscription
 
   get colors() {
     return this.myForm.get('colors') as FormArray
