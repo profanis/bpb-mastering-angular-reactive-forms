@@ -32,10 +32,10 @@
   </tr>
   <tr>
     <td>
-      {{ myForm.get('password').valid }}
+      {{ myForm.get('password')?.valid }}
     </td>
     <td>
-      {{ myForm.get('reTypePassword').valid }}
+      {{ myForm.get('reTypePassword')?.valid }}
     </td>
     <td>
       {{ myForm.errors | json }}

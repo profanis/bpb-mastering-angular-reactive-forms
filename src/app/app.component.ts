@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   ValidationErrors,
@@ -13,7 +14,7 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  myForm: FormGroup
+  myForm!: FormGroup
 
   constructor(private fb: FormBuilder) {}
 
@@ -30,8 +31,12 @@ export class AppComponent implements OnInit {
   }
 }
 
-export function fieldsMatch(control1Name, control2Name): ValidatorFn {
-  return (group: FormGroup): ValidationErrors => {
+export function fieldsMatch(
+  control1Name: string,
+  control2Name: string
+): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const group = control as FormGroup
     const control1Value = group.controls[control1Name].value
     const control2Value = group.controls[control2Name].value
 
