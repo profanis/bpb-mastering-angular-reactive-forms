@@ -21,9 +21,9 @@ import { Subscription } from 'rxjs'
 })
 export class BasicInfoComponent
   implements OnInit, OnDestroy, ControlValueAccessor {
-  form: FormGroup
-  onTouch: () => void
-  private valueSubscription: Subscription
+  form!: FormGroup
+  onTouch!: () => void
+  private valueSubscription!: Subscription
 
   constructor(private fb: FormBuilder) {}
 

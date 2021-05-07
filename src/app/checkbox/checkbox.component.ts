@@ -14,12 +14,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
   ],
 })
 export class CheckboxComponent implements ControlValueAccessor {
-  @Input() label: string
+  @Input() label!: string
 
-  isChecked: boolean
-  isDisabled: boolean
-  onChange: (_: any) => void
-  onBlur: (_: any) => void
+  isChecked!: boolean
+  isDisabled!: boolean
+  onChange!: (_: any) => void
+  onBlur!: (_: any) => void
 
   writeValue(isChecked: boolean): void {
     this.isChecked = isChecked
@@ -33,7 +33,7 @@ export class CheckboxComponent implements ControlValueAccessor {
     this.onBlur = fn
   }
 
-  setDisabledState?(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
     this.isDisabled = isDisabled
   }
 

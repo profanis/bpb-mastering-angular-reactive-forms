@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms'
   styleUrls: ['./user-registration.component.scss'],
 })
 export class UserRegistrationComponent implements OnInit {
-  userForm: FormGroup
+  userForm!: FormGroup
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {

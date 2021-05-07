@@ -19,9 +19,9 @@ import {
   ],
 })
 export class AddressComponent implements OnInit, ControlValueAccessor {
-  form: FormGroup
-  onChange: (value: boolean) => void
-  onTouch: () => void
+  form!: FormGroup
+  onChange!: (value: boolean) => void
+  onTouch!: () => void
 
   constructor(private fb: FormBuilder) {}
 
